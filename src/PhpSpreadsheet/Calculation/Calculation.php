@@ -3475,7 +3475,7 @@ class Calculation
 
                     //    If the last entry on the stack was a : operator, then we have a cell range reference
                     $testPrevOp = $stack->last(1);
-                    if ($testPrevOp['value'] == ':') {
+                    if ($testPrevOp !== null && $testPrevOp['value'] === ':') {
                         //    If we have a worksheet reference, then we're playing with a 3D reference
                         if ($matches[2] == '') {
                             //    Otherwise, we 'inherit' the worksheet reference from the start cell reference
@@ -3494,7 +3494,7 @@ class Calculation
                 } else {    // it's a variable, constant, string, number or boolean
                     //    If the last entry on the stack was a : operator, then we may have a row or column range reference
                     $testPrevOp = $stack->last(1);
-                    if ($testPrevOp['value'] == ':') {
+                    if ($testPrevOp !== null && $testPrevOp['value'] === ':') {
                         $startRowColRef = $output[count($output) - 1]['value'];
                         list($rangeWS1, $startRowColRef) = Worksheet::extractSheetTitle($startRowColRef, true);
                         if ($rangeWS1 != '') {
