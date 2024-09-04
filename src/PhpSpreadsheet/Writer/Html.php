@@ -1013,7 +1013,7 @@ class Html extends BaseWriter
         }
 
         $css['color'] = '#' . $pStyle->getColor()->getRGB();
-        $css['font-family'] = '\'' . $pStyle->getName() . '\'';
+        $css['font-family'] = '\'' . htmlspecialchars((string) $pStyle->getName(), ENT_QUOTES) . '\'';
         $css['font-size'] = $pStyle->getSize() . 'pt';
 
         return $css;
